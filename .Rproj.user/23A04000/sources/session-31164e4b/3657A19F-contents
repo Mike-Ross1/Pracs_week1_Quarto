@@ -1,0 +1,26 @@
+project:
+  type: website
+  title: Practicals
+  output-dir: _site
+  
+website: 
+  navbar: 
+    left:
+      - href: index.qmd
+        text: Home
+      - href: Practical_One.qmd
+        text: Practical One
+      
+  
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    
+    
+execute: 
+  warning: false
+  
+

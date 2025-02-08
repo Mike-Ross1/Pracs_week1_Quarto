@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "Practical_One.html",
+    "href": "Practical_One.html",
+    "title": "Practical One",
+    "section": "",
+    "text": "library(dplyr)"
+  },
+  {
+    "objectID": "Practical_One.html#packages",
+    "href": "Practical_One.html#packages",
+    "title": "Practical One",
+    "section": "",
+    "text": "library(dplyr)"
+  },
+  {
+    "objectID": "Practical_One.html#data",
+    "href": "Practical_One.html#data",
+    "title": "Practical One",
+    "section": "Data",
+    "text": "Data\n\nairquality_data = as.data.frame(airquality)\ncars_data = as.data.frame(cars)"
+  },
+  {
+    "objectID": "Practical_One.html#question-1",
+    "href": "Practical_One.html#question-1",
+    "title": "Practical One",
+    "section": "Question 1",
+    "text": "Question 1\n\nmissing_rows &lt;- airquality_data %&gt;% filter_all(any_vars(is.na(.)))\nmissing_rows\n\n   Ozone Solar.R Wind Temp Month Day\n1     NA      NA 14.3   56     5   5\n2     28      NA 14.9   66     5   6\n3     NA     194  8.6   69     5  10\n4      7      NA  6.9   74     5  11\n5     NA      66 16.6   57     5  25\n6     NA     266 14.9   58     5  26\n7     NA      NA  8.0   57     5  27\n8     NA     286  8.6   78     6   1\n9     NA     287  9.7   74     6   2\n10    NA     242 16.1   67     6   3\n11    NA     186  9.2   84     6   4\n12    NA     220  8.6   85     6   5\n13    NA     264 14.3   79     6   6\n14    NA     273  6.9   87     6   8\n15    NA     259 10.9   93     6  11\n16    NA     250  9.2   92     6  12\n17    NA     332 13.8   80     6  14\n18    NA     322 11.5   79     6  15\n19    NA     150  6.3   77     6  21\n20    NA      59  1.7   76     6  22\n21    NA      91  4.6   76     6  23\n22    NA     250  6.3   76     6  24\n23    NA     135  8.0   75     6  25\n24    NA     127  8.0   78     6  26\n25    NA      47 10.3   73     6  27\n26    NA      98 11.5   80     6  28\n27    NA      31 14.9   77     6  29\n28    NA     138  8.0   83     6  30\n29    NA     101 10.9   84     7   4\n30    NA     139  8.6   82     7  11\n31    NA     291 14.9   91     7  14\n32    NA     258  9.7   81     7  22\n33    NA     295 11.5   82     7  23\n34    78      NA  6.9   86     8   4\n35    35      NA  7.4   85     8   5\n36    66      NA  4.6   87     8   6\n37    NA     222  8.6   92     8  10\n38    NA     137 11.5   86     8  11\n39    NA      64 11.5   79     8  15\n40    NA     255 12.6   75     8  23\n41    NA     153  5.7   88     8  27\n42    NA     145 13.2   77     9  27"
+  },
+  {
+    "objectID": "Practical_One.html#question-2",
+    "href": "Practical_One.html#question-2",
+    "title": "Practical One",
+    "section": "Question 2",
+    "text": "Question 2\n\ntemp_summary = airquality_data %&gt;% summarise(\n  mean_temp = mean(Temp, na.rm = TRUE),\n  sd_temp = sd(Temp, na.rm = TRUE),\n  min_temp = min(Temp, na.rm = TRUE),\n  max_temp = max(Temp, na.rm = TRUE),\n)\n\nozone_summary = airquality_data %&gt;% summarise(\n  mean_ozone = mean(Ozone, na.rm = TRUE),\n  sd_ozone = sd(Ozone, na.rm = TRUE),\n  min_ozone = min(Ozone, na.rm = TRUE),\n  max_ozone = max(Ozone, na.rm = TRUE),\n)\n\ntemp_summary\n\n  mean_temp sd_temp min_temp max_temp\n1  77.88235 9.46527       56       97\n\nozone_summary\n\n  mean_ozone sd_ozone min_ozone max_ozone\n1   42.12931 32.98788         1       168"
+  },
+  {
+    "objectID": "Practical_One.html#question-3",
+    "href": "Practical_One.html#question-3",
+    "title": "Practical One",
+    "section": "Question 3",
+    "text": "Question 3\n\nspeed_matrix = matrix(cbind(1, cars_data$speed), ncol=2)\nY = cars_data$dist\n\nbeta_hat = solve(t(speed_matrix) %*% speed_matrix) %*% t(speed_matrix) %*% Y\nbeta_hat\n\n           [,1]\n[1,] -17.579095\n[2,]   3.932409"
+  },
+  {
+    "objectID": "Practical_One.html#question-4",
+    "href": "Practical_One.html#question-4",
+    "title": "Practical One",
+    "section": "Question 4",
+    "text": "Question 4\n\nlm_model &lt;- lm(dist ~ speed, data = cars_data)\nsummary(lm_model)$coefficients\n\n              Estimate Std. Error   t value     Pr(&gt;|t|)\n(Intercept) -17.579095  6.7584402 -2.601058 1.231882e-02\nspeed         3.932409  0.4155128  9.463990 1.489836e-12"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "This website contains the answers to Practical One."
+  },
+  {
+    "objectID": "index.html#introduction",
+    "href": "index.html#introduction",
+    "title": "Home",
+    "section": "",
+    "text": "This website contains the answers to Practical One."
+  }
+]
