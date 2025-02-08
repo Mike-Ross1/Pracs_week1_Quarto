@@ -9,7 +9,7 @@ format: html
 library(dplyr)
 ```
 
-### Data
+## Data
 
 ```{r}
 airquality_data = as.data.frame(airquality)
