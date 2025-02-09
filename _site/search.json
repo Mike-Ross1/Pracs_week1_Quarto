@@ -61,5 +61,33 @@
     "title": "Home",
     "section": "",
     "text": "This website contains the answers to Practical One."
+  },
+  {
+    "objectID": "Practical_Two.html",
+    "href": "Practical_Two.html",
+    "title": "Practical Two",
+    "section": "",
+    "text": "Seed set to 1 and x and y variables created.\n\nset.seed(1)\n\nx = seq(from = 1, to = 100, by = 1)\ny = sin(x/10) + rnorm(length(x), mean = 0, sd = 0.2)"
+  },
+  {
+    "objectID": "Practical_Two.html#question-1",
+    "href": "Practical_Two.html#question-1",
+    "title": "Practical Two",
+    "section": "",
+    "text": "Seed set to 1 and x and y variables created.\n\nset.seed(1)\n\nx = seq(from = 1, to = 100, by = 1)\ny = sin(x/10) + rnorm(length(x), mean = 0, sd = 0.2)"
+  },
+  {
+    "objectID": "Practical_Two.html#question-2",
+    "href": "Practical_Two.html#question-2",
+    "title": "Practical Two",
+    "section": "Question 2",
+    "text": "Question 2\nCreating the custom lowess function.\n\ncustomLowess &lt;- function(x, y, f) {\n  n = length(x)\n  k = ceiling(f * n)  \n  y_smoothed = numeric(n)\n  \n  for (i in 1:n) {\n    \n    k_dist = abs(x - x[i])\n    sorted_index = order(k_dist)\n    closest_neighbors = sorted_index[1:k]\n    \n    max_dist = max(k_dist[closest_neighbors])\n    \n    wj = (1 - (k_dist[closest_neighbors] / max_dist)^3)^3\n    wj[k_dist[closest_neighbors] &gt;= max_dist] = 0\n    \n    X = cbind(1, x[closest_neighbors])\n    W = diag(wj)\n    Y = y[closest_neighbors]\n    \n    beta = solve(t(X) %*% W %*% X) %*% t(X) %*% W %*% Y\n    \n    y_smoothed[i] = beta[1] + beta[2] * x[i]\n  }\n  \n  return(y_smoothed)\n}"
+  },
+  {
+    "objectID": "Practical_Two.html#question-3",
+    "href": "Practical_Two.html#question-3",
+    "title": "Practical Two",
+    "section": "Question 3",
+    "text": "Question 3\nAs seen in the plot below, the customLowess() function and the buil-in lowess() function return the same smoothed values\n\ny_customLowess = customLowess(x, y, 0.2)\ny_builtinLowess = lowess(x, y, f = 0.2, iter = 0)\n\nplot(x, y, main = \"Custom LOWESS vs Built-in LOWESS\", xlab = \"X\", ylab = \"Y\")\nlines(x, y_customLowess, col = \"blue\")\nlines(y_builtinLowess$x, y_builtinLowess$y, col = \"red\", lty = 2)\nlegend(\"topright\", legend = c(\"Custom LOWESS\", \"Built-in LOWESS\"), \n       col = c(\"blue\", \"red\"), lty = c(1,2))"
   }
 ]
