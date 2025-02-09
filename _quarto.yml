@@ -10,6 +10,8 @@ website:
         text: Home
       - href: Practical_One.qmd
         text: Practical One
+      - href: Practical_Two.qmd
+        text: Practical Two
       
   
 format:
