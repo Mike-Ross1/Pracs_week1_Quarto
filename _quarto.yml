@@ -12,6 +12,9 @@ website:
         text: Practical One
       - href: Practical_Two.qmd
         text: Practical Two
+      - href: Practical_Four.qmd
+        text: Practical Four
+      
       
   
 format:

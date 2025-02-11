@@ -30,79 +30,79 @@
   {
     "objectID": "Practical_Four.html",
     "href": "Practical_Four.html",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "",
     "text": "library(tidyverse)\nlibrary(nycflights13)"
   },
   {
     "objectID": "Practical_Four.html#packages",
     "href": "Practical_Four.html#packages",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "",
     "text": "library(tidyverse)\nlibrary(nycflights13)"
   },
   {
     "objectID": "Practical_Four.html#question-1",
     "href": "Practical_Four.html#question-1",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 1",
     "text": "Question 1\nDisplaying the flights dataset.\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
   },
   {
     "objectID": "Practical_Four.html#question-2",
     "href": "Practical_Four.html#question-2",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 2",
     "text": "Question 2\nRewriting the provided code.\n\nflights |&gt;\n  filter(month == 1) |&gt;\n  group_by(carrier) |&gt;\n  summarise(\n    mean_distance = mean(distance, na.rm = TRUE),\n    sd_distance = sd(distance, na.rm = TRUE)\n  ) |&gt;\n  arrange(mean_distance)\n\n# A tibble: 16 × 3\n   carrier mean_distance sd_distance\n   &lt;chr&gt;           &lt;dbl&gt;       &lt;dbl&gt;\n 1 YV               229          0  \n 2 9E               476.       334. \n 3 EV               522.       294. \n 4 US               536.       553. \n 5 MQ               566.       223. \n 6 FL               691.       142. \n 7 OO               733         NA  \n 8 WN               942.       496. \n 9 B6              1062.       681. \n10 DL              1220.       644. \n11 AA              1350.       626. \n12 UA              1462.       778. \n13 F9              1620          0  \n14 AS              2402          0  \n15 VX              2495.        98.2\n16 HA              4983          0"
   },
   {
     "objectID": "Practical_Four.html#question-3",
     "href": "Practical_Four.html#question-3",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 3",
     "text": "Question 3\nAs seen in the code below, carriers which have only 1 flight have NA standard deviation and carriers who fly the same distance have a 0 standard deviation.\n\nflights |&gt;\n  filter(month == 1) |&gt;\n  group_by(carrier) |&gt;\n  summarise(n = n()) |&gt;\n  filter(n == 1)\n\n# A tibble: 1 × 2\n  carrier     n\n  &lt;chr&gt;   &lt;int&gt;\n1 OO          1\n\n# Carriers with only 1 flight have NA.\n\nflights |&gt;\n  filter(month == 1) |&gt;\n  group_by(carrier) |&gt;\n  summarise(sd_distance = sd(distance, na.rm = TRUE)) |&gt;\n  filter(sd_distance == 0) \n\n# A tibble: 4 × 2\n  carrier sd_distance\n  &lt;chr&gt;         &lt;dbl&gt;\n1 AS                0\n2 F9                0\n3 HA                0\n4 YV                0\n\n# Carriers with the same flights distance have a 0 standard deviation."
   },
   {
     "objectID": "Practical_Four.html#question-4",
     "href": "Practical_Four.html#question-4",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 4",
     "text": "Question 4\nDataframe where the carriers are along the columns, and the rows are the average departure delay flown by each carrier in each month.\n\nflights |&gt;\n  group_by(month, carrier) |&gt;\n  summarise(avg_dep_delay = mean(dep_delay, na.rm = TRUE)) |&gt;\n  pivot_wider(names_from = carrier, values_from = avg_dep_delay)\n\n# A tibble: 12 × 17\n# Groups:   month [12]\n   month  `9E`    AA     AS    B6    DL    EV    F9    FL    HA    MQ    OO\n   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1     1 16.9   6.93  7.35   9.49  3.85 24.2  10     1.97 54.4   6.49 67   \n 2     2 16.5   8.28  0.722 13.8   5.54 21.5  29.8   5.18 17.4   8.09 NA   \n 3     3 13.4   8.70  8.42  14.2   9.93 26.2  16.8  17.3   1.16  7.19 NA   \n 4     4 13.6  11.7  11.3   15.2   8.17 22.8  24.6  13.1  -2.1  13.7  NA   \n 5     5 22.7   9.66  6.77   9.78  9.74 20.2  35.9  19.2  -1.45 13.9  NA   \n 6     6 29.0  14.6  13.1   20.4  18.7  25.5  29.4  38.8   1.47 20.8  61   \n 7     7 31.4  12.1   2.42  24.9  20.6  26.5  31.8  41.2  -1.71 20.7  NA   \n 8     8 17.3   7.17  2.87  15.7   9.85 16.3  22.2  23.4   1.68 10.1  64   \n 9     9  7.75  5.69 -4.52   6.63  5.53  8.24  8.26 16.9  -5.44  5.35 -4.94\n10    10  9.33  3.00  0.677  2.96  3.42 13.4   9.70 13.7  -5.10  4.48 NA   \n11    11  7.56  3.10  3.08   3.52  2.85  9.83 13.5  16.9  -5.44  3.28  0.8 \n12    12 19.8  11.7  18.0   17.0  10.8  27.9  13.1  26.1  -3.14 12.7  NA   \n# ℹ 5 more variables: UA &lt;dbl&gt;, US &lt;dbl&gt;, VX &lt;dbl&gt;, WN &lt;dbl&gt;, YV &lt;dbl&gt;"
   },
   {
     "objectID": "Practical_Four.html#question-5",
     "href": "Practical_Four.html#question-5",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 5",
     "text": "Question 5\nThe proportion of flights that were delayed but arrived on or before time.\n\nflights |&gt;\n  summarise(propor_delayed_on_time = mean(dep_delay &gt; 0 & arr_delay &lt;= 0, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  propor_delayed_on_time\n                   &lt;dbl&gt;\n1                  0.108"
   },
   {
     "objectID": "Practical_Four.html#question-6",
     "href": "Practical_Four.html#question-6",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 6",
     "text": "Question 6\nRoutes that more than one airline flies.\n\nroutes = flights |&gt;\n  group_by(origin, dest) |&gt;\n  summarise(num_airlines = n_distinct(carrier)) |&gt;\n  filter(num_airlines &gt; 1)\nroutes\n\n# A tibble: 128 × 3\n# Groups:   origin [3]\n   origin dest  num_airlines\n   &lt;chr&gt;  &lt;chr&gt;        &lt;int&gt;\n 1 EWR    ATL              4\n 2 EWR    AUS              2\n 3 EWR    BDL              2\n 4 EWR    BNA              2\n 5 EWR    BOS              3\n 6 EWR    BWI              2\n 7 EWR    CHS              2\n 8 EWR    CLE              2\n 9 EWR    CLT              3\n10 EWR    CVG              2\n# ℹ 118 more rows\n\n\nEach airlines average arrival delay for each of the above routes.\n\navg_arr_delay = flights |&gt;\n  semi_join(routes, by = c(\"origin\", \"dest\")) |&gt;\n  group_by(origin, dest, carrier) |&gt;\n  summarise(avg_arr_delay = mean(arr_delay, na.rm = TRUE), .groups = \"drop\") |&gt;\n  left_join(airlines, by = \"carrier\")\n\navg_arr_delay\n\n# A tibble: 343 × 5\n   origin dest  carrier avg_arr_delay name                    \n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;                   \n 1 EWR    ATL   9E              -6.25 Endeavor Air Inc.       \n 2 EWR    ATL   DL              10.0  Delta Air Lines Inc.    \n 3 EWR    ATL   EV              19.5  ExpressJet Airlines Inc.\n 4 EWR    ATL   UA              10.5  United Air Lines Inc.   \n 5 EWR    AUS   UA               4.28 United Air Lines Inc.   \n 6 EWR    AUS   WN             -11.2  Southwest Airlines Co.  \n 7 EWR    BDL   EV               6.78 ExpressJet Airlines Inc.\n 8 EWR    BDL   UA              22.6  United Air Lines Inc.   \n 9 EWR    BNA   EV              17.7  ExpressJet Airlines Inc.\n10 EWR    BNA   WN              -2.13 Southwest Airlines Co.  \n# ℹ 333 more rows\n\n\nThe airline with the worst and best average arrival delay for the above routes.\n\nbest_worst_delay = avg_arr_delay |&gt;\n  group_by(origin, dest) |&gt;\n  summarise(\n    best_air = carrier[which.min(avg_arr_delay)],\n    min_delay = min(avg_arr_delay),\n    worst_air = carrier[which.max(avg_arr_delay)],\n    max_delay = max(avg_arr_delay)\n  )\n\nbest_worst_delay\n\n# A tibble: 128 × 6\n# Groups:   origin [3]\n   origin dest  best_air min_delay worst_air max_delay\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n 1 EWR    ATL   9E          -6.25  EV            19.5 \n 2 EWR    AUS   WN         -11.2   UA             4.28\n 3 EWR    BDL   EV           6.78  UA            22.6 \n 4 EWR    BNA   WN          -2.13  EV            17.7 \n 5 EWR    BOS   EV          -4.01  B6             6.87\n 6 EWR    BWI   WN           5.95  EV            20.1 \n 7 EWR    CHS   UA         -14     EV            16.2 \n 8 EWR    CLE   EV          -3.71  UA             5.97\n 9 EWR    CLT   US           0.920 EV            20.5 \n10 EWR    CVG   9E           1.40  EV            21.2 \n# ℹ 118 more rows\n\n\nThe route with the greatest difference between the best and worst performing airlines.\n\nbest_worst_perf = best_worst_delay |&gt;\n  mutate(delay_diff = (max_delay - min_delay))\n         \nmax_delay_diff = max(best_worst_perf$delay_diff, na.rm = TRUE)    \n\nmax_diff_route = best_worst_perf |&gt;\n  filter(delay_diff == max_delay_diff)\n  \nmax_diff_route\n\n# A tibble: 1 × 7\n# Groups:   origin [1]\n  origin dest  best_air min_delay worst_air max_delay delay_diff\n  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;\n1 JFK    ATL   9E            1.40 EV              128       127.\n\n\nA possible reason for this difference is that the highest performing airline may have better scheduling and processes than the worst which allow them to depart on time. Another possible reason may be that the worst performing airline was scheduled during bad weather or had more technical issues than the best which caused a delay."
   },
   {
     "objectID": "Practical_Four.html#question-7",
     "href": "Practical_Four.html#question-7",
-    "title": "Practical_Four",
+    "title": "Practical Four",
     "section": "Question 7",
-    "text": "Question 7\nAs seen in the output below, gender has a spelling mistake (femal), height has NA values, disease_status has both “healthy” and “Healthy” categories, and finally glucose has NA values.\n\nUtilsDataRSV::view_cols(data_q7)\n\n[1] \"id\"\n [1] \"id_12\" \"id_40\" \"id_39\" \"id_15\" \"id_13\" \"id_46\" \"id_1\"  \"id_47\" \"id_3\" \n[10] \"id_10\" \"id_5\"  \"id_26\" \"id_28\" \"id_21\" \"id_49\" \"id_33\" \"id_44\" \"id_20\"\n[19] \"id_29\" \"id_45\"\n[1] \"30 unique entries not displayed\"\n[1] \"_____________________\"\n[1] \"age\"\n[1] 71 27 58 48 38\n[1] \"_____________________\"\n[1] \"gender\"\n[1] \"female\" \"femal\"  \"male\"  \n[1] \"_____________________\"\n[1] \"height\"\n[1] 196.8 174.9 181.0 180.4    NA\n[1] \"_____________________\"\n[1] \"weight\"\n[1] 61.9 57.6 62.3 95.7 60.8\n[1] \"_____________________\"\n[1] \"blood_type\"\n[1] \"O\"  \"B\"  \"A\"  \"AB\"\n[1] \"_____________________\"\n[1] \"disease_status\"\n[1] \"Healthy\"  \"healthy\"  \"diseased\"\n[1] \"_____________________\"\n[1] \"cholesterol\"\n[1] 248 153 250 221 156\n[1] \"_____________________\"\n[1] \"glucose\"\n[1]  75  90 120  97  NA\n[1] \"_____________________\"\n[1] \"smoker\"\n[1] \"no\"  \"yes\"\n[1] \"_____________________\"\n[1] \"exercise\"\n[1] \"none\"       \"regular\"    \"occasional\"\n[1] \"_____________________\"\n[1] \"income\"\n[1] 35418 84820 68275 69750 72490\n[1] \"_____________________\"\n[1] \"education\"\n[1] \"master\"     \"highschool\" \"bachelor\"   \"PhD\"       \n[1] \"_____________________\"\n[1] \"region\"\n[1] \"West\"  \"North\" \"South\" \"East\" \n[1] \"_____________________\"\n[1] \"marital_status\"\n[1] \"single\"   \"divorced\" \"married\"  \"widowed\" \n[1] \"_____________________\""
+    "text": "Question 7\nAs seen in the output below, gender has a spelling mistake (femal), height has NA values, disease_status has both “healthy” and “Healthy” categories, and finally glucose has NA values.\n\nUtilsDataRSV::view_cols(data_q7)\n\n[1] \"id\"\n [1] \"id_22\" \"id_34\" \"id_5\"  \"id_48\" \"id_32\" \"id_41\" \"id_36\" \"id_12\" \"id_26\"\n[10] \"id_17\" \"id_45\" \"id_19\" \"id_40\" \"id_20\" \"id_6\"  \"id_15\" \"id_29\" \"id_13\"\n[19] \"id_33\" \"id_46\"\n[1] \"30 unique entries not displayed\"\n[1] \"_____________________\"\n[1] \"age\"\n[1] 69 64 48 62 33\n[1] \"_____________________\"\n[1] \"gender\"\n[1] \"female\" \"male\"   \"femal\" \n[1] \"_____________________\"\n[1] \"height\"\n[1] 161.6 197.4 189.3 165.4    NA\n[1] \"_____________________\"\n[1] \"weight\"\n[1] 63.3 79.7 99.3 69.4 75.1\n[1] \"_____________________\"\n[1] \"blood_type\"\n[1] \"B\"  \"AB\" \"O\"  \"A\" \n[1] \"_____________________\"\n[1] \"disease_status\"\n[1] \"diseased\" \"healthy\"  \"Healthy\" \n[1] \"_____________________\"\n[1] \"cholesterol\"\n[1] 153 160 228 230 233\n[1] \"_____________________\"\n[1] \"glucose\"\n[1]  80  78 108 116  NA\n[1] \"_____________________\"\n[1] \"smoker\"\n[1] \"yes\" \"no\" \n[1] \"_____________________\"\n[1] \"exercise\"\n[1] \"occasional\" \"none\"       \"regular\"   \n[1] \"_____________________\"\n[1] \"income\"\n[1] 47553 51409 84820 82232 92356\n[1] \"_____________________\"\n[1] \"education\"\n[1] \"PhD\"        \"bachelor\"   \"highschool\" \"master\"    \n[1] \"_____________________\"\n[1] \"region\"\n[1] \"East\"  \"South\" \"West\"  \"North\"\n[1] \"_____________________\"\n[1] \"marital_status\"\n[1] \"married\"  \"single\"   \"widowed\"  \"divorced\"\n[1] \"_____________________\""
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "This website contains the answers to Practical One."
+    "text": "This website contains the answers to the Practicals."
   },
   {
     "objectID": "index.html#introduction",
     "href": "index.html#introduction",
     "title": "Home",
     "section": "",
-    "text": "This website contains the answers to Practical One."
+    "text": "This website contains the answers to the Practicals."
   },
   {
     "objectID": "Practical_One.html",

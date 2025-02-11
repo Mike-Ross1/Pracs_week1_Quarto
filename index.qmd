@@ -7,4 +7,4 @@ format: html
 
 ## Introduction
 
-This website contains the answers to Practical One.
+This website contains the answers to the Practicals.
